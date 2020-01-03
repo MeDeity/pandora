@@ -10,6 +10,11 @@
     <packaging>pom</packaging>
     <name>pandora</name>
 
+    <properties>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <pandora.log.version>1.0.0</pandora.log.version>
+        <pandora.common.version>1.0.0</pandora.common.version>
+    </properties>
 
     <!--发布到私有仓库的配置-->
     <distributionManagement>
