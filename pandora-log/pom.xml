@@ -9,10 +9,18 @@
     <name>pandora-log</name>
 
     <parent>
-        <artifactId>lib-security</artifactId>
+        <artifactId>pandora</artifactId>
         <groupId>com.mengya</groupId>
         <version>1.0-SNAPSHOT</version>
     </parent>
 
+    <!--https://mrbird.cc/Spring-Boot-AOP%20log.html-->
+    <dependencies>
+        <!-- aop依赖 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-aop</artifactId>
+        </dependency>
+    </dependencies>
 
 </project>

@@ -16,6 +16,21 @@
         <pandora.common.version>1.0.0</pandora.common.version>
     </properties>
 
+    <!--设置阿里镜像-->
+    <repositories>
+        <repository>
+            <id>alimaven</id>
+            <name>aliyun maven</name>
+            <url>http://maven.aliyun.com/nexus/content/groups/public/</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
+
     <!--发布到私有仓库的配置-->
     <distributionManagement>
         <repository>
