@@ -10,6 +10,66 @@
     <packaging>pom</packaging>
     <name>pandora</name>
 
+
+    <!--发布到私有仓库的配置-->
+    <distributionManagement>
+        <repository>
+            <id>nexus-private</id>
+            <name>nexus-private-releases</name>
+            <url>http://120.27.229.28:8081/repository/maven-releases/</url>
+        </repository>
+        <snapshotRepository>
+            <id>nexus-private</id>
+            <name>nexus-private-snapshots</name>
+            <url>http://120.27.229.28:8081/repository/maven-snapshots/</url>
+            <uniqueVersion>false</uniqueVersion>
+            <layout>legacy</layout>
+        </snapshotRepository>
+    </distributionManagement>
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+            </dependency>
+            <dependency>
+                <groupId>io.spring.platform</groupId>
+                <artifactId>platform-bom</artifactId>
+                <version>Brussels-SR4</version>
+                <type>pom</type>
+                <scope>import</scope>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>2.3.2</version>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                    <encoding>UTF-8</encoding>
+                </configuration>
+            </plugin>
+            <!--发布到私有仓库依赖的插件-->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-deploy-plugin</artifactId>
+                <version>2.8.1</version>
+                <configuration>
+                    <!--如果在多模块项目中，可以将不需要发布的项目配置为skip=true-->
+                    <skip>false</skip>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+
     <modules>
         <module>pandora-log</module>
         <module>pandora-common</module>
