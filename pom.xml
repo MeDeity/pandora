@@ -10,6 +10,13 @@
     <packaging>pom</packaging>
     <name>pandora</name>
 
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.2.0.RELEASE</version>
+        <relativePath/> <!-- lookup parent from repository -->
+    </parent>
+
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <pandora.log.version>1.0.0</pandora.log.version>
@@ -59,6 +66,10 @@
                 <version>Brussels-SR4</version>
                 <type>pom</type>
                 <scope>import</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-web</artifactId>
             </dependency>
         </dependencies>
     </dependencyManagement>
