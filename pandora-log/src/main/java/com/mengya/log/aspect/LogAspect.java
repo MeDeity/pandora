@@ -1,7 +1,8 @@
 package com.mengya.log.aspect;
 
 import com.mengya.log.annotation.Log;
-import com.mengya.log.domain.SysLog;
+import com.mengya.log.mybatis.mapper.SysLogMapper;
+import com.mengya.log.mybatis.model.SysLog;
 import com.mengya.log.utils.HttpContextUtils;
 import com.mengya.log.utils.IPUtils;
 import org.aspectj.lang.ProceedingJoinPoint;
@@ -9,17 +10,22 @@ import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
 import org.aspectj.lang.reflect.MethodSignature;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.LocalVariableTableParameterNameDiscoverer;
 import org.springframework.stereotype.Component;
 
 import javax.servlet.http.HttpServletRequest;
 import java.lang.reflect.Method;
 import java.util.Date;
+import java.util.logging.Logger;
 
 @Component
 @Aspect
 public class LogAspect {
+    private Logger logger = Logger.getLogger(LogAspect.class.getSimpleName());
 
+    @Autowired
+    private SysLogMapper sysLogMapper;
     //切入点定义
     @Pointcut("@annotation(com.mengya.log.annotation.Log)")
     public void pointcut(){}
@@ -70,12 +76,12 @@ public class LogAspect {
         // 设置IP地址
         sysLog.setIp(IPUtils.getIpAddr(request));
         // 模拟一个用户名
-        sysLog.setUsername("mrbird");
+        sysLog.setUserName("TODO");
         sysLog.setTime((int) time);
         sysLog.setCreateTime(new Date());
-        System.out.println(sysLog.toString());
+        logger.info(sysLog.toString());
         // 保存系统日志
-//        sysLogDao.saveSysLog(sysLog);
+        sysLogMapper.insert(sysLog);
     }
 
 }

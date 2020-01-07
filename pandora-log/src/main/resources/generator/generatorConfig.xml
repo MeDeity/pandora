@@ -1,0 +1,95 @@
+<!--最新版的MBG需要使用上面的xml头，配置文件必须包含上面的DOCTYPE,用于验证配置文件是否是MBG所必须的-->
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<!--
+包含以下子元素（有严格的顺序）：
+<properties> (0个或1个)
+<classPathEntry> (0个或多个)
+<context> (1个或多个)
+-->
+<generatorConfiguration>
+    <!--模板所使用的配置文件-->
+    <properties resource="generate-db-config.properties"/>
+
+    <!--
+    1.该元素只有一个**必选属性**id，用来唯一确定一个<context>元素，该id属性可以在运行MBG的使用
+    2.defaultModelType::**这个属性很重要**，这个属性定义了MBG如何生成**实体类**。
+    a.flat:该模型为每一张表只生成一个实体类。这个实体类包含表中的所有字段。**这种模型最简单，推荐使用。**
+    b.hierarchical:如果表有主键,那么该模型会产生一个单独的主键实体类,如果表还有BLOB字段， 则会为表生成一个包含所有BLOB字段的单独的实体类,然后为所有其他的字段生成一个单独的实体类。 MBG会在所有生成的实体类之间维护一个继承关系。
+    c.conditional:*这是默认值*,这个模型和hierarchical类似，除了如果那个单独的类将只包含一个字段，将不会生成一个单独的类。 因此,如果一个表的主键只有一个字段,那么不会为该字段生成单独的实体类,会将该字段合并到基本实体类中
+
+    3.targetRuntime:此属性用于指定生成的代码的运行时环境。该属性支持以下可选值：
+    a.MyBatis3:*这是默认值*
+    b.MyBatis3Simple 如果你希望不生成和Example查询有关的内容
+    c.Ibatis2Java2
+    d.Ibatis2Java5 一般情况下使用默认值即可，有关这些值的具体作用以及区别请查看中文文档的详细内容。
+    -->
+    <context id="Mysql" targetRuntime="MyBatis3Simple" defaultModelType="flat">
+        <!--
+        beginningDelimiter 和 endingDelimiter 开始和结束分隔符，对于有关键字的情况下适用
+        特别是当表明 更MySQL 的保留字存在冲突时
+        -->
+        <property name="beginningDelimiter" value="`"/>
+        <property name="endingDelimiter" value="`"/>
+
+        <plugin type="tk.mybatis.mapper.generator.MapperPlugin">
+            <!--
+            配置后生成的 Mapper 接口都会自动继承上该接口
+            -->
+            <property name="mappers" value="com.mengya.log.utils.BaseTkMapper"/>
+            <!--
+            caseSensitive 是否区分大小写，默认值 false。如果数据库区分大小写，这里就需要配置为 true，
+            这样当表名为 USER 时，会生成 @Table(name = "USER") 注解，否则使用小写 user 时会找不到表
+            -->
+            <property name="caseSensitive" value="true"/>
+            <!--
+             是否强制生成注解，默认 false，如果设置为 true，不管数据库名和字段名是否一致，都会生成注解（包含 @Table 和 @Column）
+            -->
+            <property name="forceAnnotation" value="true"/>
+        </plugin>
+        <!--
+        一般情况下由于MBG生成的注释信息没有任何价值，而且有时间戳的情况下每次生成的注释都不一样，
+        使用**版本控制**的时候每次都会提交，因而一般情况下我们都会屏蔽注释信息
+        -->
+        <commentGenerator>
+            <!--:**阻止**生成注释，默认为false-->
+            <property name="suppressAllComments" value="false"/>
+            <!--**阻止**生成的注释包含时间戳，默认为false-->
+            <property name="suppressDate" value="true"/>
+        </commentGenerator>
+        <!--数据库连接属性读取自config.properties中的配置信息-->
+        <jdbcConnection driverClass="${jdbc.driverClass}"
+                        connectionURL="${jdbc.url}"
+                        userId="${jdbc.user}"
+                        password="${jdbc.password}">
+            <!--修复8.0版本生成其他数据库表的问题-->
+            <property name="nullCatalogMeansCurrent" value="true" />
+        </jdbcConnection>
+
+        <!--model 生成目标路径-->
+        <javaModelGenerator targetPackage="com.mengya.log.mybatis.model"
+                            targetProject="src/main/java">
+            <!--数据库字段使用CHAR时,自动去掉不必要的空格-->
+            <property name="trimStrings" value="true" />
+        </javaModelGenerator>
+
+        <!--mapper 生成目标路径-->
+        <sqlMapGenerator targetPackage="mapper"
+                         targetProject="src/main/resources"/>
+
+        <!--Mapper接口 生成目标路径-->
+        <javaClientGenerator targetPackage="com.mengya.log.mybatis.mapper"
+                             targetProject="src/main/java"
+                             type="XMLMAPPER"/>
+
+        <!--
+        使用%通配符 通配所有的表
+        这里用的通配符匹配全部的表，另外所有表都有自动增长的id字段。如果不是所有表的配置都一样，可以做针对性的配置
+        -->
+        <table tableName="%">
+            <generatedKey column="id" sqlStatement="JDBC"/>
+        </table>
+    </context>
+</generatorConfiguration>
