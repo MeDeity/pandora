@@ -42,10 +42,10 @@
 
     <build>
         <plugins>
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-            </plugin>
+<!--            <plugin>-->
+<!--                <groupId>org.springframework.boot</groupId>-->
+<!--                <artifactId>spring-boot-maven-plugin</artifactId>-->
+<!--            </plugin>-->
             <!--
             使用 Maven 执行MBG
             MBG 配置中用到的所有外部代码都必须通过依赖方式配置在这里，否则运行时会提示找不到对应的类而报错。

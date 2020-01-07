@@ -142,4 +142,18 @@ public class SysLog {
     public void setCreateTime(Date createTime) {
         this.createTime = createTime;
     }
+
+    @Override
+    public String toString() {
+        return "SysLog{" +
+                "id=" + id +
+                ", userName='" + userName + '\'' +
+                ", operation='" + operation + '\'' +
+                ", time=" + time +
+                ", method='" + method + '\'' +
+                ", params='" + params + '\'' +
+                ", ip='" + ip + '\'' +
+                ", createTime=" + createTime +
+                '}';
+    }
 }
