@@ -104,5 +104,6 @@
     <modules>
         <module>pandora-log</module>
         <module>pandora-common</module>
+        <module>pandora-sms</module>
     </modules>
 </project>
