@@ -22,6 +22,7 @@ public class SwaggerConfig implements WebMvcConfigurer {
     public Docket createRestApi() {
         return new Docket(DocumentationType.SWAGGER_2)
                 .apiInfo(apiInfo())
+                .groupName("测试用接口组")
                 .select()
                 //为当前包路径
                 .apis(RequestHandlerSelectors.basePackage("com.hello.demo.controller"))
