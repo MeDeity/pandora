@@ -1,8 +1,6 @@
 package com.mengya.generator;
 
 
-import com.baomidou.mybatisplus.core.exceptions.MybatisPlusException;
-import com.baomidou.mybatisplus.core.toolkit.StringUtils;
 import com.baomidou.mybatisplus.generator.AutoGenerator;
 import com.baomidou.mybatisplus.generator.config.DataSourceConfig;
 import com.baomidou.mybatisplus.generator.config.GlobalConfig;
@@ -10,53 +8,33 @@ import com.baomidou.mybatisplus.generator.config.PackageConfig;
 import com.baomidou.mybatisplus.generator.config.StrategyConfig;
 import com.baomidou.mybatisplus.generator.config.rules.NamingStrategy;
 import com.baomidou.mybatisplus.generator.engine.FreemarkerTemplateEngine;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.context.annotation.PropertySource;
 
-import java.util.Scanner;
 
-
+@PropertySource("classpath:security.properties")
 public class MyBatisGenerator {
 
     //代码生成项目地址
     @Value("${mybatis.projectPath}")
     private String projectPath;
 
-    /**
-     * 读取控制台内容
-     */
-    public static String scanner(String tip) {
-        Scanner scanner = new Scanner(System.in);
-        StringBuilder help = new StringBuilder();
-        help.append("请输入" + tip + "：");
-        System.out.println(help.toString());
-        if (scanner.hasNext()) {
-            String ipt = scanner.next();
-            if (StringUtils.isNotBlank(ipt)) {
-                return ipt;
-            }
-        }
-        throw new MybatisPlusException("请输入正确的" + tip + "！");
-    }
+    @Autowired
+    private AutoGenerator autoGenerator;
+    @Autowired
+    private GlobalConfig globalConfig;
 
-
-    /**
-     * RUN THIS
-     */
-    public static void main(String[] args) {
-        if(true){
+    public void startGenerator() {
+        if (true) {
             MyBatisGenerator myBatisGenerator = new MyBatisGenerator();
             System.out.println(myBatisGenerator.projectPath);
-        }else {
-            // 代码生成器
-            AutoGenerator mpg = new AutoGenerator();
-
-            // 全局配置
-            GlobalConfig gc = new GlobalConfig();
-//        gc.setOutputDir(projectPath + "/masterpat/src/main/java");
-//            gc.setOutputDir(projectPath + "/src/main/java");//现在是单模块
-            gc.setAuthor("lysoft");
-            gc.setOpen(false);
-            mpg.setGlobalConfig(gc);
+        } else {
+//          gc.setOutputDir(projectPath + "/masterpat/src/main/java");
+//          gc.setOutputDir(projectPath + "/src/main/java");//现在是单模块
+            globalConfig.setAuthor("lysoft");
+            globalConfig.setOpen(false);//不需要打开输出目录
+            autoGenerator.setGlobalConfig(globalConfig);
 
             // 数据源配置
             DataSourceConfig dsc = new DataSourceConfig();
@@ -65,13 +43,13 @@ public class MyBatisGenerator {
             dsc.setDriverName("com.mysql.jdbc.Driver");
             dsc.setUsername("masterpat");
             dsc.setPassword("masterpat@2020");
-            mpg.setDataSource(dsc);
+            autoGenerator.setDataSource(dsc);
 
             // 包配置
             PackageConfig pc = new PackageConfig();
             //pc.setModuleName(scanner("模块名"));
             pc.setParent("com.liyisoft.masterpat");
-            mpg.setPackageInfo(pc);
+            autoGenerator.setPackageInfo(pc);
 
 //        // 自定义配置
 //        InjectionConfig cfg = new InjectionConfig() {
@@ -90,11 +68,11 @@ public class MyBatisGenerator {
 //            }
 //        });
 //        cfg.setFileOutConfigList(focList);
-//        mpg.setCfg(cfg);
+//        autoGenerator.setCfg(cfg);
 //        TemplateConfig templateConfig = new TemplateConfig();
 //        templateConfig.setXml(null);
 //        templateConfig.setController("/templates/mapper.xml.ftl");
-//        mpg.setTemplate(templateConfig);
+//        autoGenerator.setTemplate(templateConfig);
 
             // 策略配置
             StrategyConfig strategy = new StrategyConfig();
@@ -108,10 +86,10 @@ public class MyBatisGenerator {
             strategy.setSuperEntityColumns("id");
             strategy.setControllerMappingHyphenStyle(true);
             strategy.setTablePrefix(pc.getModuleName() + "_");
-            mpg.setStrategy(strategy);
+            autoGenerator.setStrategy(strategy);
             // 选择 freemarker 引擎需要指定如下加，注意 pom 依赖必须有！
-            mpg.setTemplateEngine(new FreemarkerTemplateEngine());
-            mpg.execute();
+            autoGenerator.setTemplateEngine(new FreemarkerTemplateEngine());
+            autoGenerator.execute();
         }
     }
 

@@ -123,5 +123,6 @@
         <module>pandora-common</module>
         <module>pandora-generator</module>
         <module>pandora-swagger</module>
+        <module>pandora-utils</module>
     </modules>
 </project>
