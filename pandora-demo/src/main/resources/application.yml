@@ -1,1 +1,9 @@
-
+aliyun:
+  oss:
+    # endpoint是访问OSS的域名
+    endPoint: http://oss-cn-beijing.aliyuncs.com
+    # accessKeyId和accessKeySecret是OSS的访问密钥
+    accessKeyId: xxxxxxxxxxxxxxxxx
+    accessKeySecret: xxxxxxxxxxxxxx
+    # Bucket用来管理所存储Object的存储空间
+    bucketName: xxxxx

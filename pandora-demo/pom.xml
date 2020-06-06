@@ -21,11 +21,6 @@
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-web</artifactId>
-        </dependency>
-
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-devtools</artifactId>
             <scope>runtime</scope>
             <optional>true</optional>
@@ -43,6 +38,11 @@
         <dependency>
             <groupId>com.mengya</groupId>
             <artifactId>pandora-swagger</artifactId>
+            <version>1.0.0</version>
+        </dependency>
+        <dependency>
+            <groupId>com.mengya</groupId>
+            <artifactId>pandora-oss</artifactId>
             <version>1.0.0</version>
         </dependency>
         <dependency>
