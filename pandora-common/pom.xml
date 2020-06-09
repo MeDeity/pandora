@@ -13,8 +13,17 @@
         <version>1.0.0</version>
     </parent>
 
-    <dependencies>
+    <properties>
+        <maven.deploy.skip>false</maven.deploy.skip>
+        <alibaba-fastjson.version>1.2.59</alibaba-fastjson.version>
+    </properties>
 
+    <dependencies>
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>${alibaba-fastjson.version}</version>
+        </dependency>
     </dependencies>
 
 

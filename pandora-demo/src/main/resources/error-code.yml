@@ -1,0 +1,6 @@
+biz:
+  error:
+    - code: 200
+      message: "success"
+    - code: 500
+      message: "内部服务器错误"
