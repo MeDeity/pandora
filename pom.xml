@@ -6,7 +6,7 @@
 
     <groupId>com.mengya</groupId>
     <artifactId>pandora</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0.0</version>
     <packaging>pom</packaging>
     <name>pandora</name>
 
@@ -21,6 +21,11 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <pandora.log.version>1.0.0</pandora.log.version>
         <pandora.common.version>1.0.0</pandora.common.version>
+        <pandora.swagger.version>1.0.0</pandora.swagger.version>
+        <springfox-swagger2.version>2.9.2</springfox-swagger2.version>
+        <springfox-swagger-ui.version>2.9.2</springfox-swagger-ui.version>
+        <swagger-bootstrap-ui.version>1.8.9</swagger-bootstrap-ui.version>
+
     </properties>
 
     <!--设置阿里镜像-->
@@ -54,25 +59,35 @@
         </snapshotRepository>
     </distributionManagement>
 
-    <dependencyManagement>
-        <dependencies>
-            <dependency>
-                <groupId>org.projectlombok</groupId>
-                <artifactId>lombok</artifactId>
-            </dependency>
-            <dependency>
-                <groupId>io.spring.platform</groupId>
-                <artifactId>platform-bom</artifactId>
-                <version>Brussels-SR4</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-            <dependency>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-starter-web</artifactId>
-            </dependency>
-        </dependencies>
-    </dependencyManagement>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+        </dependency>
+        <!-- Spring Boot Web 依赖 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
+        <!-- https://mvnrepository.com/artifact/io.springfox/springfox-swagger2 -->
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger2</artifactId>
+            <version>${springfox-swagger2.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.springfox</groupId>
+            <artifactId>springfox-swagger-ui</artifactId>
+            <version>${springfox-swagger-ui.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.github.xiaoymin</groupId>
+            <artifactId>swagger-bootstrap-ui</artifactId>
+            <version>${swagger-bootstrap-ui.version}</version>
+        </dependency>
+    </dependencies>
 
 
     <build>
@@ -105,5 +120,10 @@
         <module>pandora-log</module>
         <module>pandora-common</module>
         <module>pandora-sms</module>
+        <module>pandora-generator</module>
+        <module>pandora-swagger</module>
+        <module>pandora-utils</module>
+        <module>pandora-oss</module>
+        <module>pandora-demo</module>
     </modules>
 </project>

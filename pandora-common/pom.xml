@@ -10,7 +10,23 @@
     <parent>
         <artifactId>pandora</artifactId>
         <groupId>com.mengya</groupId>
-        <version>1.0-SNAPSHOT</version>
+        <version>1.0.0</version>
     </parent>
+
+    <properties>
+        <maven.deploy.skip>false</maven.deploy.skip>
+        <alibaba-fastjson.version>1.2.59</alibaba-fastjson.version>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>${alibaba-fastjson.version}</version>
+        </dependency>
+    </dependencies>
+
+
+
 
 </project>
