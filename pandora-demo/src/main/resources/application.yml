@@ -7,3 +7,5 @@ aliyun:
     accessKeySecret: xxxxxxxxxxxxxx
     # Bucket用来管理所存储Object的存储空间
     bucketName: xxxxx
+server:
+  port: 8888

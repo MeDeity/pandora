@@ -12,8 +12,8 @@ import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
-@Component
-@EnableSwagger2
+//@Component
+//@EnableSwagger2
 public class SwaggerConfig {
 
     //@Autowired 根据类型注入

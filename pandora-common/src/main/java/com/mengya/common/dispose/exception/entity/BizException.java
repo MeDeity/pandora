@@ -1,10 +1,8 @@
 package com.mengya.common.dispose.exception.entity;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
 
 @Data
-@AllArgsConstructor
 public class BizException extends RuntimeException {
     /**
      * 错误码
