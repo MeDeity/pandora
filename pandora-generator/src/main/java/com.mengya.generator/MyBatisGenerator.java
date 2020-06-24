@@ -9,9 +9,9 @@ import com.baomidou.mybatisplus.generator.config.StrategyConfig;
 import com.baomidou.mybatisplus.generator.config.rules.NamingStrategy;
 import com.baomidou.mybatisplus.generator.engine.FreemarkerTemplateEngine;
 import com.mengya.generator.config.MyBatisGeneratorProperties;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Service;
 
+@Service
 public class MyBatisGenerator {
 
     private MyBatisGeneratorProperties myBatisGeneratorProperties;
@@ -21,24 +21,22 @@ public class MyBatisGenerator {
     }
 
     //代码生成项目地址
-    @Value("${mybatis.projectPath}")
+
     private String projectPath;
 
-    @Autowired
-    private AutoGenerator autoGenerator;
-    @Autowired
-    private GlobalConfig globalConfig;
 
     public void startGenerator() {
-        globalConfig.setAuthor("lysoft");
+        GlobalConfig globalConfig = new GlobalConfig();
+        globalConfig.setAuthor(myBatisGeneratorProperties.getAuthor());
         globalConfig.setOpen(false);//不需要打开输出目录
+        AutoGenerator autoGenerator = new AutoGenerator();
         autoGenerator.setGlobalConfig(globalConfig);
 
         // 数据源配置
         DataSourceConfig dsc = new DataSourceConfig();
         dsc.setUrl(myBatisGeneratorProperties.getDatabaseUrl());
         // dsc.setSchemaName("public");
-        dsc.setDriverName("com.mysql.jdbc.Driver");
+        dsc.setDriverName(myBatisGeneratorProperties.getDriverName());
         dsc.setUsername(myBatisGeneratorProperties.getDatabaseUser());
         dsc.setPassword(myBatisGeneratorProperties.getDatabasePassword());
         autoGenerator.setDataSource(dsc);
@@ -46,7 +44,7 @@ public class MyBatisGenerator {
         // 包配置
         PackageConfig pc = new PackageConfig();
         //pc.setModuleName(scanner("模块名"));
-        pc.setParent("com.liyisoft.masterpat");
+        pc.setParent(myBatisGeneratorProperties.getPackageName());
         autoGenerator.setPackageInfo(pc);
 
 //        // 自定义配置
