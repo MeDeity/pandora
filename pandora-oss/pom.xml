@@ -9,6 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
     <artifactId>pandora-oss</artifactId>
+    <version>${pandora.oss.version}</version>
 
     <dependencies>
         <dependency>
