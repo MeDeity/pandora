@@ -1,6 +1,7 @@
 package com.mengya.generator;
 
 
+import com.baomidou.mybatisplus.core.toolkit.StringUtils;
 import com.baomidou.mybatisplus.generator.AutoGenerator;
 import com.baomidou.mybatisplus.generator.config.DataSourceConfig;
 import com.baomidou.mybatisplus.generator.config.GlobalConfig;
@@ -27,6 +28,9 @@ public class MyBatisGenerator {
 
     public void startGenerator() {
         GlobalConfig globalConfig = new GlobalConfig();
+
+        String projectPath = StringUtils.isNotBlank(myBatisGeneratorProperties.getSaveLocation())?myBatisGeneratorProperties.getSaveLocation():System.getProperty("user.dir");
+        globalConfig.setOutputDir(projectPath + "/src/main/java");
         globalConfig.setAuthor(myBatisGeneratorProperties.getAuthor());
         globalConfig.setOpen(false);//不需要打开输出目录
         AutoGenerator autoGenerator = new AutoGenerator();
@@ -77,8 +81,7 @@ public class MyBatisGenerator {
         strategy.setSuperEntityClass("com.liyisoft.masterpat.common.BaseEntity");
         strategy.setEntityLombokModel(true);
         strategy.setSuperControllerClass("com.liyisoft.masterpat.common.BaseController");
-        strategy.setInclude(new String[]{"pat_address", "pat_advance_order", "pat_coin", "pat_message", "pat_message_user", "pat_negative", "pat_order", "pat_photographs_order",
-                "pat_sigin", "pat_take_photo_order", "pat_trans_coin", "pat_user_follow", "pat_user_share"});
+        strategy.setInclude(new String[]{"t_user"});
         strategy.setSuperEntityColumns("id");
         strategy.setControllerMappingHyphenStyle(true);
         strategy.setTablePrefix(pc.getModuleName() + "_");

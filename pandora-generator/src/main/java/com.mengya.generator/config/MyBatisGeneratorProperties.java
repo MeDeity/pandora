@@ -23,4 +23,6 @@ public class MyBatisGeneratorProperties {
     private String packageName;
     /**基类*/
     private String superBaseEntity;
+    /**生成文件的物理路径*/
+    private String saveLocation;
 }

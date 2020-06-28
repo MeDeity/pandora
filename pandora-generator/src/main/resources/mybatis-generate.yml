@@ -3,7 +3,9 @@ generate:
   database-user: root
   database-password: czcat
   author: MeDeity
-  driver-name: com.mysql.jdbc.Driver
+  driver-name: com.mysql.cj.jdbc.Driver
   package-name: com.mengya.videoserver
-#  基类
+  #  基类
   super-base-entity: com.mengya.videoserver.entity.BaseEntity
+  #生成文件的物理路径
+  save-location: D:/back/pandora/pandora-demo
