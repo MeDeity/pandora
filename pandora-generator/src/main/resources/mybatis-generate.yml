@@ -6,6 +6,10 @@ generate:
   driver-name: com.mysql.cj.jdbc.Driver
   package-name: com.mengya.videoserver
   #  基类
-  super-base-entity: com.mengya.videoserver.entity.BaseEntity
+#  super-base-entity: com.mengya.videoserver.entity.BaseEntity
+  #  基类
+#  super-base-controller: com.mengya.videoserver.base.BaseController
   #生成文件的物理路径
   save-location: D:/back/pandora/pandora-demo
+  list:
+    - t_user

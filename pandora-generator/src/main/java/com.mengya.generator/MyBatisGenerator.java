@@ -78,10 +78,10 @@ public class MyBatisGenerator {
         StrategyConfig strategy = new StrategyConfig();
         strategy.setNaming(NamingStrategy.underline_to_camel);
         strategy.setColumnNaming(NamingStrategy.underline_to_camel);
-        strategy.setSuperEntityClass("com.liyisoft.masterpat.common.BaseEntity");
+        strategy.setSuperEntityClass(myBatisGeneratorProperties.getSuperBaseEntity());
         strategy.setEntityLombokModel(true);
-        strategy.setSuperControllerClass("com.liyisoft.masterpat.common.BaseController");
-        strategy.setInclude(new String[]{"t_user"});
+        strategy.setSuperControllerClass(myBatisGeneratorProperties.getSuperBaseController());
+        strategy.setInclude(myBatisGeneratorProperties.getList());
         strategy.setSuperEntityColumns("id");
         strategy.setControllerMappingHyphenStyle(true);
         strategy.setTablePrefix(pc.getModuleName() + "_");
