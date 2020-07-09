@@ -7,7 +7,7 @@ public class BizException extends RuntimeException {
     /**
      * 错误码
      */
-    protected String errorCode;
+    protected int errorCode;
     /**
      * 错误信息
      */
@@ -21,7 +21,7 @@ public class BizException extends RuntimeException {
      * @param errorMsg the detail message. The detail message is saved for
      *                later retrieval by the {@link #getMessage()} method.
      */
-    public BizException(String errorCode, String errorMsg) {
+    public BizException(int errorCode, String errorMsg) {
         super(errorMsg);
         this.errorCode = errorCode;
         this.errorMsg = errorMsg;
