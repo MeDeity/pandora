@@ -15,7 +15,7 @@ public class ApiResult<T> implements Serializable {
     /**
      * 响应码
      */
-    private String code;
+    private int code;
 
     /**
      * 请求是否成功
@@ -46,7 +46,7 @@ public class ApiResult<T> implements Serializable {
         return result;
     }
 
-    public static ApiResult success(String code,String message,Object data){
+    public static ApiResult success(int code,String message,Object data){
         ApiResult result = new ApiResult();
         result.success = true;
         result.code = code;
@@ -63,7 +63,7 @@ public class ApiResult<T> implements Serializable {
         return result;
     }
 
-    public static ApiResult ofFail(String code, String msg) {
+    public static ApiResult ofFail(int code, String msg) {
         ApiResult result = new ApiResult();
         result.success = false;
         result.code = code;
@@ -71,7 +71,7 @@ public class ApiResult<T> implements Serializable {
         return result;
     }
 
-    public static ApiResult ofFail(String code, String msg, Object data) {
+    public static ApiResult ofFail(int code, String msg, Object data) {
         ApiResult result = new ApiResult();
         result.success = false;
         result.code = code;
