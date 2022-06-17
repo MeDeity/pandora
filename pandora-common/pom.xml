@@ -15,7 +15,7 @@
 
     <properties>
         <maven.deploy.skip>false</maven.deploy.skip>
-        <alibaba-fastjson.version>1.2.59</alibaba-fastjson.version>
+        <alibaba-fastjson.version>1.2.83</alibaba-fastjson.version>
     </properties>
 
     <dependencies>
