@@ -70,7 +70,7 @@
                         <artifactId>mysql-connector-java</artifactId>
                         <!--看情况，用的是什么版本的mysql,目前这两个版本使用最多-->
 <!--                        <version>8.0.11</version>-->
-                        <version>5.1.43</version>
+                        <version>8.0.28</version>
                     </dependency>
                     <dependency>
                         <groupId>tk.mybatis</groupId>
